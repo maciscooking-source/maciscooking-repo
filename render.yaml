@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: maciscooking-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r dashboard/backend_requirements.txt
+    startCommand: uvicorn unified_backend:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: POLYGON_API_KEY
+        value: 9RUg7b7ddeTlG7Ap6IaJ7AKHdMvomAn7
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    healthCheckPath: /health
+    autoDeploy: true
